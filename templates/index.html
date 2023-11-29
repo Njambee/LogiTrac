@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to LogiTrac</title>
+
+    <link rel="icon" href="static/Images/logitracfav.png" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("static/Images/img_1.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: "Droid Sans", serif;
+            color: #10130d;
+        }
+
+        .container {
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        p {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+
+        .signup-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to LogiTrac</h1>
+        <p>Your solution for efficient logistics and transportation</p>
+        <a href="{% url 'about' %}" class="btn btn-primary">About Us</a>
+        <a href="{% url 'services' %}" class="btn btn-primary">Services</a>
+        <a href="{% url 'pricing' %}" class="btn btn-primary">Pricing</a>
+        <a href="{% url 'get-a-quote' %}" class="btn btn-primary">Get a Quote</a>
+        <a href="{% url 'contact' %}" class="btn btn-primary">Contact Us</a>
+        <a href="{% url 'signup' %}" class="btn btn-primary signup-btn">Sign Up</a>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

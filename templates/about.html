@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About LogiTrac</title>
+
+    <!-- Link Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            color: #333; /* Text color */
+            font-family: Arial, sans-serif; /* Set a fallback font family */
+        }
+
+        .navbar {
+            background-color: #007bff; /* Blue navbar background */
+            color: #fff; /* Navbar text color */
+        }
+
+        .container {
+            padding-top: 50px; /* Adjust padding for content */
+            max-width: 800px; /* Limit content width */
+        }
+
+        .footer {
+            background-color: #007bff; /* Blue footer background */
+            color: #fff; /* Footer text color */
+            position: fixed; /* Fixed positioning for footer */
+            bottom: 0; /* Stick the footer to the bottom */
+            width: 100%; /* Full width */
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Larger heading font size */
+            margin-bottom: 20px; /* Add space below the heading */
+        }
+
+        p {
+            font-size: 1.1rem; /* Font size for paragraphs */
+            line-height: 1.6; /* Adjust line height for better readability */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">LogiTrac</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'get-a-quote' %}">Get A Quote</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>About LogiTrac</h1>
+        <p>Welcome to LogiTrac, your comprehensive solution for transportation and logistics management. Our platform is designed to streamline and enhance your business operations in the transportation industry.</p>
+        <p>At LogiTrac, we are committed to delivering cutting-edge technology and versatile solutions that cater to the specific needs of businesses involved in cargo handling, shipping, home moving, warehousing, trucking, and packaging services.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container py-3 text-center">
+            <span>© 2023 LogiTrac. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

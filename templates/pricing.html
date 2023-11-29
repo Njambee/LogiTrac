@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pricing Plans - LogiTrac</title>
+
+</head>
+<body>
+    <h1>Pricing Plans</h1>
+
+    <div class="pricing-plans">
+
+        <div class="plan">
+            <h2>Basic Plan</h2>
+            <p><strong>Price:</strong> KES 50,000/month</p>
+            <ul>
+                <li>Standard Delivery</li>
+                <li>Tracking Features</li>
+                <li>Limited Support</li>
+            </ul>
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+        </div>
+
+
+        <div class="plan">
+            <h2>Pro Plan</h2>
+            <p><strong>Price:</strong> KES 100,000/month</p>
+            <ul>
+                <li>Express Delivery</li>
+                <li>Advanced Tracking</li>
+                <li>24/7 Support</li>
+            </ul>
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+
+        </div>
+
+        <div class="plan">
+            <h2>Premium Plan</h2>
+            <p><strong>Price:</strong> KES 200,000/month</p>
+            <ul>
+                <li>Premium Delivery</li>
+                <li>Real-time Tracking</li>
+                <li>Dedicated Support Manager</li>
+            </ul>
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Moving Services - LogiTrac</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Home Moving Services</h1>
+        <p>LogiTrac offers professional home moving services to make your relocation stress-free.</p>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Service Description</h5>
+                <p class="card-text">Moving homes can be stressful, but our home moving services are designed to make it
+            hassle-free. We provide comprehensive assistance in packing, transportation, and
+            unpacking, ensuring a smooth transition to your new home.</p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h3>Book Home Moving Service</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="cargo_details">Belongings Details</label>
+                    <textarea class="form-control" id="cargo_details" name="cargo_details" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickup_address">Current Address</label>
+                    <input type="text" class="form-control" id="pickup_address" name="pickup_address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="delivery_address">New Address</label>
+                    <input type="text" class="form-control" id="delivery_address" name="delivery_address" required>
+                </div>
+
+                <!-- Button to fetch user's location -->
+                <button type="button" class="btn btn-primary" onclick="getUserLocation()">Pick My Destination</button>
+
+                <!-- Button with M-Pesa icon -->
+                <button type="submit" class="btn btn-primary">
+                    <img src="{% static 'Images/mpesaicon.png' %}" alt="M-Pesa Icon" style="width: 30px; height: 25px;">
+                    <a href="{% url 'pay' %}">
+                    Book Service (Pay via M-Pesa)</a>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for fetching user's location -->
+    <script>
+        function getUserLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
+
+        function successCallback(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+
+            document.getElementById("delivery_address").value = `Latitude: ${latitude}, Longitude: ${longitude}, Accuracy: ${accuracy} meters`;
+        }
+
+        function errorCallback(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,36 +1,79 @@
 from django.db import models
 
 
-class User(models.Model):
-    firstname = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
+class Member(models.Model):
+    fullname = models.CharField(max_length=100)
     email = models.EmailField()
-    password = models.CharField(max_length=20)
-    age = models.IntegerField(default=0)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.firstname + " " + self.lastname
+        return self.username
 
 
-class Shipment(models.Model):
-    tracking_number = models.CharField(max_length=100, unique=True)
-    sender_name = models.CharField(max_length=100)
-    sender_address = models.CharField(max_length=255)
-    recipient_name = models.CharField(max_length=100)
-    recipient_address = models.CharField(max_length=255)
-    shipment_description = models.TextField(max_length=300)
-    shipment_status = models.CharField(max_length=255, default='In Transit')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+class CargoHandling(models.Model):
+    cargo_details = models.TextField()
+    pickup_address = models.CharField(max_length=100)
+    delivery_address = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.tracking_number
+        return "Cargo - ID: {self.id}"
 
 
-class Warehouse(models.Model):
+class HomeMoving(models.Model):
+    belongings_details = models.TextField()
+    pickup_address = models.CharField(max_length=100)
+    delivery_address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "Home Moving - ID: {self.id}"
+
+
+class WareHousing(models.Model):
+    goods_details = models.TextField()
+    pickup_address = models.CharField(max_length=100)
+    delivery_address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "Warehousing - ID: {self.id}"
+
+
+class TruckingAssistance(models.Model):
+    cargo_details = models.TextField()
+    pickup_address = models.CharField(max_length=100)
+    delivery_address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "Trucking Assistance - ID: {self.id}"
+
+
+class ShippingInfo(models.Model):
+    cargo_details = models.TextField()
+    pickup_address = models.CharField(max_length=100)
+    delivery_address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "Shipping Information - ID: {self.id}"
+
+
+class MpesaPayment(models.Model):
+    transaction_id = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    phone_number = models.CharField(max_length=20)
+    status = models.CharField(max_length=50)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "M-Pesa Payment - {self.transaction_id}"
+
+
+# models.py
+
+class Quote(models.Model):
     name = models.CharField(max_length=100)
-    location = models.CharField(max_length=200)
-    capacity = models.IntegerField()
+    email = models.EmailField()
+    shipment_details = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

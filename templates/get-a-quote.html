@@ -4,21 +4,32 @@
     <meta charset="UTF-8">
     <title>Get a Quote - LogiTrac</title>
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Get a Quote</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+    <div class="container mt-5">
+        <h1>Get a Quote</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
 
-        <label for="shipment_details">Shipment Details:</label><br>
-        <textarea id="shipment_details" name="shipment_details" rows="4" cols="50" required></textarea><br><br>
+            <div class="form-group">
+                <label for="shipment_details">Shipment Details:</label>
+                <textarea class="form-control" id="shipment_details" name="shipment_details" rows="4" required></textarea>
+            </div>
 
-        <input type="submit" value="Submit">
-    </form>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

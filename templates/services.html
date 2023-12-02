@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,35 +6,29 @@
     <title>LogiTrac - Services</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
+    <link rel="stylesheet" href="{% static 'static/css/services.css' %}">
 
-    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
         <h1>Our Services</h1>
         <p>Explore our range of services designed to meet your transportation and logistics needs:</p>
 
-        <ul>
-            <li>Cargo Handling</li>
-            <li>Shipping Solutions</li>
-            <li>Home Moving Services</li>
-            <li>Logistics Warehousing</li>
-            <li>Trucking Assistance</li>
+        <ul class="list-group">
+
+            <li class="list-group-item"><a href="{% url 'cargohandling' %}">Cargo Handling</a></li>
+            <li class="list-group-item"><a href="{% url 'shipping' %}">Shipping Solutions</a></li>
+            <li class="list-group-item"><a href="{% url 'homemoving' %}">Home Moving Services</a></li>
+            <li class="list-group-item"><a href="{% url 'warehousing' %}">Warehousing</a></li>
+            <li class="list-group-item"><a href="{% url 'truckingassistance' %}">Trucking Assistance</a></li>
 
         </ul>
 
-
         <p>Contact us to learn more about how our services can benefit you!</p>
-
 
         <a href="{% url 'contact' %}" class="btn btn-primary">Contact Us</a>
     </div>
 
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-
-    </script>
 </body>
 </html>

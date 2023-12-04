@@ -2,8 +2,9 @@ from django.http import HttpResponse
 from requests.auth import HTTPBasicAuth
 from django.shortcuts import render, redirect
 from LogiTrac_App.credentials import LipanaMpesaPpassword, MpesaAccessToken
-from LogiTrac_App.forms import QuoteForm
-from LogiTrac_App.models import Member, ShippingInfo
+from LogiTrac_App.forms import QuoteForm, TruckBookingForm, ShippingInfoForm, HomeMovingForm, WareHousingForm, \
+    TruckingAssistanceForm, CargoHandlingForm
+from LogiTrac_App.models import Member, TruckBooking
 import requests
 import json
 
@@ -63,12 +64,36 @@ def services(request):
 
 
 def bookatruck(request):
-    return render(request, 'bookatruck.html')
+    if request.method == 'POST':
+        form = TruckBookingForm(request.POST)  # If you have a form, use it here
+        if form.is_valid():
+            # Create an instance of TruckBooking model and save the data
+            booking = TruckBooking(
+                sender_name=form.cleaned_data['senderName'],
+                sender_address=form.cleaned_data['senderAddress'],
+                receiver_name=form.cleaned_data['receiverName'],
+                receiver_address=form.cleaned_data['receiverAddress'],
+                shipment_details=form.cleaned_data['shipmentDetails'],
+                pickup_time=form.cleaned_data['pickupTime'],
+                dropoff_time=form.cleaned_data['dropoffTime']
+            )
+            booking.save()
+            return redirect('thank_you.html')
 
+    else:
+        form = TruckBookingForm()
+
+    return render(request, 'bookatruck.html', {'form': form})
 
 def cargohandling(request):
-    return render(request, 'cargohandling.html')
+    if request.method == 'POST':
+        form = CargoHandlingForm(request.POST)
+        if form.is_valid():
+            return render(request, 'thank_you.html')
+    else:
+        form = CargoHandlingForm()
 
+    return render(request, 'cargohandling.html', {'form': form})
 
 def token(request):
     consumer_key = 'nYosK08GYU3AvQ2pMdafWHueGDjGGvHT'
@@ -87,31 +112,51 @@ def pay(request):
     return render(request, 'pay.html')
 
 
-def shipping(request):
+def shipping_solutions(request):
     if request.method == 'POST':
-        cargo_details = request.POST.get('cargo_details')
-        pickup_address = request.POST.get('pickup_address')
-        delivery_address = request.POST.get('delivery_address')
+        form = ShippingInfoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'thank_you.html')
+    else:
+        form = ShippingInfoForm()
 
-        ShippingInfo.objects.create(
-            cargo_details=cargo_details,
-            pickup_address=pickup_address,
-            delivery_address=delivery_address
-        )
-
-    return render(request, 'shippingsolutions.html')
+    return render(request, 'shipping_solutions.html', {'form': form})
 
 
 def homemoving(request):
-    return render(request, 'homemovingservices.html')
+    if request.method == 'POST':
+        form = HomeMovingForm(request.POST)
+        if form.is_valid():
+            return render(request, 'thank_you.html')
+    else:
+        form = HomeMovingForm()
+
+    return render(request, 'homemovingservices.html', {'form': form})
 
 
 def warehousing(request):
-    return render(request, 'warehousing.html')
+    if request.method == 'POST':
+        form = WareHousingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'thank_you.html')
+    else:
+        form = WareHousingForm()
+
+    return render(request, 'warehousing.html', {'form': form})
 
 
 def truckingassistance(request):
-    return render(request, 'truckingassistance.html')
+    if request.method == 'POST':
+        form = TruckingAssistanceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'thank_you.html')
+    else:
+        form = TruckingAssistanceForm()
+
+    return render(request, 'truckingassistance.html', {'form': form})
 
 
 def stk(request):
@@ -136,3 +181,7 @@ def stk(request):
         }
         response = requests.post(api_url, json=request, headers=headers)
         return HttpResponse(response)
+
+
+def thank_you(request):
+    return render(request, 'thank_you.html')

@@ -17,10 +17,10 @@ urlpatterns = [
     path('pricing/', views.pricing, name='pricing'),
     path('register/', views.register, name='register'),
     path('services/', views.services, name='services'),
-    path('shipping/', views.shipping, name='shipping'),
+    path('shipping/', views.shipping_solutions, name='shipping'),
     path('stk/', views.stk, name='stk'),
     path('token/', views.token, name='token'),
+    path('thank_you/', views.thank_you, name='thank_you'),
     path('truckingassistance/', views.truckingassistance, name='truckingassistance'),
     path('warehousing/', views.warehousing, name='warehousing'),
-
     ]

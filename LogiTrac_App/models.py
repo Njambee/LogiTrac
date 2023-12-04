@@ -12,48 +12,43 @@ class Member(models.Model):
 
 
 class CargoHandling(models.Model):
+    name = models.CharField(max_length=100, default='')
+    contact = models.CharField(max_length=20, default='')
     cargo_details = models.TextField()
     pickup_address = models.CharField(max_length=100)
     delivery_address = models.CharField(max_length=100)
 
-    def __str__(self):
-        return "Cargo - ID: {self.id}"
-
 
 class HomeMoving(models.Model):
+    name = models.CharField(max_length=100, default='')
+    contact = models.CharField(max_length=20, default='')
     belongings_details = models.TextField()
-    pickup_address = models.CharField(max_length=100)
-    delivery_address = models.CharField(max_length=100)
-
-    def __str__(self):
-        return "Home Moving - ID: {self.id}"
+    pickup_address = models.CharField(max_length=200)
+    delivery_address = models.CharField(max_length=200)
 
 
 class WareHousing(models.Model):
+    name = models.CharField(max_length=100, default='')
+    contact = models.CharField(max_length=20, default='')
     goods_details = models.TextField()
     pickup_address = models.CharField(max_length=100)
     delivery_address = models.CharField(max_length=100)
 
-    def __str__(self):
-        return "Warehousing - ID: {self.id}"
-
 
 class TruckingAssistance(models.Model):
+    name = models.CharField(max_length=100, default='')
+    contact = models.CharField(max_length=20, default='')
     cargo_details = models.TextField()
     pickup_address = models.CharField(max_length=100)
     delivery_address = models.CharField(max_length=100)
-
-    def __str__(self):
-        return "Trucking Assistance - ID: {self.id}"
 
 
 class ShippingInfo(models.Model):
+    name = models.CharField(max_length=100, default='')
+    contact = models.CharField(max_length=20, default='')
     cargo_details = models.TextField()
     pickup_address = models.CharField(max_length=100)
     delivery_address = models.CharField(max_length=100)
-
-    def __str__(self):
-        return "Shipping Information - ID: {self.id}"
 
 
 class MpesaPayment(models.Model):
@@ -63,11 +58,6 @@ class MpesaPayment(models.Model):
     status = models.CharField(max_length=50)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return "M-Pesa Payment - {self.transaction_id}"
-
-
-# models.py
 
 class Quote(models.Model):
     name = models.CharField(max_length=100)
@@ -75,5 +65,22 @@ class Quote(models.Model):
     shipment_details = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class TruckBooking(models.Model):
+    sender_name = models.CharField(max_length=100)
+    sender_address = models.TextField()
+    receiver_name = models.CharField(max_length=100)
+    receiver_address = models.TextField()
+    shipment_details = models.TextField()
+    pickup_time = models.DateTimeField()
+    dropoff_time = models.DateTimeField()
+
     def __str__(self):
-        return self.name
+        return "Truck Booking - {self.sender_name} to {self.receiver_name}"
